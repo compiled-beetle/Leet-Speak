@@ -1,0 +1,33 @@
+{
+  "name": "leet-speak",
+  "version": "1.0.0",
+  "description": "Leet speak tool to encode/decode.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compiled-beetle/leet-speak.git"
+  },
+  "keywords": [
+    "leet",
+    "speak",
+    "encode",
+    "decode",
+    "node",
+    "javascript"
+  ],
+  "author": "compiled-beetle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compiled-beetle/leet-speak/issues"
+  },
+  "homepage": "https://github.com/compiled-beetle/leet-speak#readme",
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
