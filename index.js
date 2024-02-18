@@ -73,14 +73,14 @@ const leetAlphabet = {
 };
 
 // prettier-ignore
-const leetNumbers = {
-    "numbers": {
-        "1": ["L", "I"], "2": ["R", "Z"], "3": ["E"],
-        "4": ["A"], "5": ["S"], "6": ["b", "G"],
-        "7": ["T", "L"], "8": ["B"],
-        "9": ["g", "q"], "0": ["o", "()"]
-    }
-};
+// const leetNumbers = {
+//     "numbers": {
+//         "1": ["L", "I"], "2": ["R", "Z"], "3": ["E"],
+//         "4": ["A"], "5": ["S"], "6": ["b", "G"],
+//         "7": ["T", "L"], "8": ["B"],
+//         "9": ["g", "q"], "0": ["o", "()"]
+//     }
+// };
 
 const encodeLeet = (string, level) => {
     string = string.toLowerCase();
@@ -138,8 +138,9 @@ Options:
   -h, --help             display help for command
 
 Examples:
-  npm start -- -l 1 -e -s "hello"
-  npm start -- -l 2 -d -s "h3ll0"`;
+  npm start -- -l basic -e -s "hello"
+  npm start -- -l basic -d -s "h3ll0"
+`;
 
 program.on('--help', () => {
     console.log(helpInfo);
@@ -155,8 +156,8 @@ if ((!level, (!encode && !decode) || !string)) {
         console.error('invalid command. Please provide either -e, --encode or -d, --decode.');
         console.log(helpInfo);
     } else {
-        if (isNaN(parseInt(level)) || parseInt(level) < 1 || parseInt(level) > 3) {
-            console.error('invalid level. provide  ("basic", "intermediate", "advanced", or "expert")');
+        if (!['basic', 'intermediate', 'advanced', 'expert'].includes(level.toLowerCase())) {
+            console.error('invalid level. provide ("basic", "intermediate", "advanced", or "expert")');
             console.log(helpInfo);
         } else {
             if (encode) {
