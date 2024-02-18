@@ -4,7 +4,7 @@
   "description": "Leet speak tool to encode/decode.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,5 @@
   "homepage": "https://github.com/compiled-beetle/leet-speak#readme",
   "dependencies": {
     "commander": "^12.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.3"
   }
 }
