@@ -154,13 +154,6 @@ program
     .option('-s, --string <string>', 'input string to encode or decode');
 
 const helpInfo = `
-Options:
-  -l, --level <level>    leet-speak complexity level ("basic", "intermediate", "advanced", or "expert")
-  -e, --encode           encode the input string
-  -d, --decode           decode the input string
-  -s, --string <string>  input string to encode or decode
-  -h, --help             display help for command
-
 Examples:
   npm start -- -l basic -e -s "hello"
   npm start -- -l basic -d -s "h3ll0"
