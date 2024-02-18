@@ -105,7 +105,7 @@ const leetAlphabet = {
 //     }
 // };
 
-program.name('leet-speak-cli').description('CLI tool to encode and decode leet-speak').version('1.0.0');
+program.name('leet-speak-cli').description('CLI tool to encode and decode leet-speak').version('0.0.1');
 
 const encodeLeet = (string, level) => {
     string = string.toLowerCase();
