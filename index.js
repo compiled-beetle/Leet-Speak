@@ -83,11 +83,44 @@ const leetNumbers = {
 };
 
 const encodeLeet = (string, level) => {
-    console.log('encoding ...');
+    string = string.toLowerCase();
+    const leetMap = leetAlphabet[level];
+    let encodedString = '';
+    for (let char of string) {
+        const replacements = leetMap[char];
+        const replacement = replacements ? replacements[Math.floor(Math.random() * replacements.length)] : char;
+        encodedString += replacement;
+    }
+    return encodedString;
 };
 
 const decodeLeet = (string, level) => {
-    console.log('decoding ...');
+    string = string.toLowerCase();
+    const leetMap = leetAlphabet[level];
+    let decodedString = '';
+    let index = 0;
+    while (index < string.length) {
+        let found = false;
+        for (let key in leetMap) {
+            if (leetMap.hasOwnProperty(key)) {
+                const replacements = leetMap[key];
+                for (let replacement of replacements) {
+                    if (string.substr(index, replacement.length) === replacement) {
+                        decodedString += key;
+                        index += replacement.length;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found) break;
+        }
+        if (!found) {
+            decodedString += string[index];
+            index++;
+        }
+    }
+    return decodedString;
 };
 
 program
