@@ -124,7 +124,7 @@ const decodeLeet = (string, level) => {
 };
 
 program
-    .option('-l, --level <level>', 'leet speak complexity level (1, 2, or 3)')
+    .option('-l, --level <level>', 'leet speak complexity level ("basic", "intermediate", "advanced", or "expert")')
     .option('-e, --encode', 'encode the input string')
     .option('-d, --decode', 'decode the input string')
     .option('-s, --string <string>', 'input string to encode or decode')
@@ -132,11 +132,11 @@ program
 
 const helpInfo = `
 Options:
-  -l, --level <level>    leet speak complexity level (1, 2, or 3)
-  -e, --encode    encode the input string
-  -d, --decode    decode the input string
+  -l, --level <level>    leet speak complexity level ("basic", "intermediate", "advanced", or "expert")
+  -e, --encode           encode the input string
+  -d, --decode           decode the input string
   -s, --string <string>  input string to encode or decode
-  -h, --help      display help for command
+  -h, --help             display help for command
 
 Examples:
   npm start -- -l 1 -e -s "hello"
@@ -157,7 +157,7 @@ if ((!level, (!encode && !decode) || !string)) {
         console.log(helpInfo);
     } else {
         if (isNaN(parseInt(level)) || parseInt(level) < 1 || parseInt(level) > 3) {
-            console.error('invalid level. Please provide a number (1, 2, or 3)');
+            console.error('invalid level. provide  ("basic", "intermediate", "advanced", or "expert")');
             console.log(helpInfo);
         } else {
             if (encode) {
