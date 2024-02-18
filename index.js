@@ -11,36 +11,41 @@ const decodeLeet = (string, level) => {
 };
 
 program
-    .option('-l, --level <level>', 'leet Speak complexity level (1, 2, or 3)')
+    .option('-l, --level <level>', 'leet speak complexity level (1, 2, or 3)')
     .option('-e, --encode', 'encode the input string')
     .option('-d, --decode', 'decode the input string')
     .option('-s, --string <string>', 'input string to encode or decode')
     .parse(process.argv);
 
+const helpInfo = `
+Options:
+  -l, --level <level>    leet speak complexity level (1, 2, or 3)
+  -e, --encode           encode the input string
+  -d, --decode           decode the input string
+  -s, --string <string>  input string to encode or decode
+  -h, --help             display help for command
+
+Examples:
+  npm start -- -l 1 -e -s "hello"
+  npm start -- -l 2 -d -s "h3ll0"`;
+
 program.on('--help', () => {
-    console.log('');
-    console.log('-l, --level <level>', 'leet Speak complexity level (1, 2, or 3)');
-    console.log('-e, --encode', 'encode the input string');
-    console.log('-d, --decode', 'decode the input string');
-    console.log('-s, --string <string>', 'input string to encode or decode');
-    console.log('');
-    console.log('examples:');
-    console.log('  $ leet -l 1 -e -s "hello"');
-    console.log('  $ leet -l 2 -d -s "h3ll0"');
+    console.log(helpInfo);
 });
 
 const { level, encode, decode, string } = program;
 
-if (!level || (!encode && !decode) || !string) {
+if (!level, (!encode && !decode) || !string) {
     console.error('invalid command. provide correct the arguments.');
+    console.log(helpInfo);
 } else {
     if ((encode && decode) || (!encode && !decode)) {
-        console.error('invalid command. Please provide either -e || --encode or -d || --decode.');
-        console.log('use -h || --help for usage information.');
+        console.error('invalid command. Please provide either -e, --encode or -d, --decode.');
+        console.log(helpInfo);
     } else {
         if (isNaN(parseInt(level)) || parseInt(level) < 1 || parseInt(level) > 3) {
             console.error('invalid level. Please provide a number (1, 2, or 3)');
-            console.log('use -h || --help for usage information.');
+            console.log(helpInfo);
         } else {
             if (encode) {
                 const encodedString = encodeLeet(string, level);
