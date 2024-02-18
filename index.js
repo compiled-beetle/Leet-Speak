@@ -95,7 +95,6 @@ const encodeLeet = (string, level) => {
 };
 
 const decodeLeet = (string, level) => {
-    string = string.toLowerCase();
     const leetMap = leetAlphabet[level];
     let decodedString = '';
     let index = 0;

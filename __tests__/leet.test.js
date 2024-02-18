@@ -12,7 +12,7 @@ describe('encodeLeet', () => {
         const input = 'hello world';
         const level = 'intermediate';
         const encoded = encodeLeet(input, level);
-        expect(encoded).toEqual('h3ll0 w0r1d');
+        expect(encoded).toEqual('#3110 \\/\\/0I21|)');
     });
 
     test('encode advanced Leet', () => {
@@ -43,21 +43,21 @@ describe('decodeLeet', () => {
     });
 
     test('decode intermediate Leet', () => {
-        const input = 'h3ll0 w0r1d';
+        const input = '#3110 \\/\\/0I21|)';
         const level = 'intermediate';
         const decoded = decodeLeet(input, level);
         expect(decoded).toEqual('hello world');
     });
 
     test('decode advanced Leet', () => {
-        const input = 'h3ll0 //0r|_|)';
+        const input = '(-)ë|_|_<> \\N<>2|_[)';
         const level = 'advanced';
         const decoded = decodeLeet(input, level);
         expect(decoded).toEqual('hello world');
     });
 
     test('decode expert Leet', () => {
-        const input = 'h3ll0 //0r|_|)';
+        const input = '(-)£77Ø v²Ø27)';
         const level = 'expert';
         const decoded = decodeLeet(input, level);
         expect(decoded).toEqual('hello world');
