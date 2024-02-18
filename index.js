@@ -172,3 +172,5 @@ if ((!level, (!encode && !decode) || !string)) {
         }
     }
 }
+
+module.exports = { encodeLeet, decodeLeet };
