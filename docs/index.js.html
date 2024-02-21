@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>#!/usr/bin/env node
+
+const { program } = require('commander');
+
+/**
+ * Leet alphabet mapping for encoding and decoding.
+ */
+const leetAlphabet = {
+    basic: {
+        a: ['4'],
+        e: ['3'],
+        i: ['1'],
+        o: ['0'],
+        u: ['(_)']
+    },
+    intermediate: {
+        a: ['4'],
+        c: ['['],
+        d: ['|)'],
+        e: ['3'],
+        g: ['6'],
+        h: ['#'],
+        i: ['1'],
+        j: [']'],
+        k: ['|&lt;'],
+        l: ['1'],
+        m: ['/V\\'],
+        n: ['|\\|'],
+        o: ['0'],
+        p: ['|>'],
+        q: ['0_'],
+        s: ['5'],
+        t: ['7'],
+        u: ['(_)'],
+        v: ['\\/'],
+        w: ['\\/\\/'],
+        x: ['>&lt;'],
+        z: ['2'],
+        f: ['ph'],
+        b: ['I3'],
+        r: ['I2'],
+        y: ['j']
+    },
+    advanced: {
+        a: ['4', '@', '/\\'],
+        c: ['[', '{', '&lt;'],
+        d: [')', '|)', '(|', '[)', '|>'],
+        e: ['3', '&amp;', 'ë'],
+        g: ['&amp;', '6', '9', '(_+', '(?,', '[,', '{,'],
+        h: ['#', '/-/', '[-]', ']-[', ')-(,', '(-)', ':-:'],
+        i: ['1', '[]', '|', '!', ']['],
+        j: [', _|', '_|', '._|', '._]', '_]'],
+        k: ['>|', '|&lt;', '/&lt;', '1&lt;', '|(', '|{'],
+        l: ['1', '7', '|_', '|'],
+        n: ['^/', '|\\|', '/\\/', '[\\]', '&lt;\\>', '{\\}'],
+        o: ['(0)', '()', '[]', '&lt;>'],
+        p: ['|*', '|º', '|^', '|>', '|7'],
+        q: ['(_,)', '9', '()_', '2', '0_', '&lt;|', '&amp;'],
+        s: ['5', '$', '2'],
+        t: ['7', '+', '-|-', "']['", '~|~'],
+        v: ['\\/', '|/', '\\|'],
+        w: ['\\/\\/', 'VV', '\\N', "'//", "\\\\'", '\\^/', '\\|/', '\\_|_/', '\\_:_/'],
+        x: ['>&lt;', '}{', ')(', ']['],
+        z: ['2', '7_', '-/_', '%'],
+        m: ['/\\/\\', '/V\\', '[V]', '[]V[]', '|\\/|', '^^', '&lt;\\/>', ']\\/['],
+        f: ['ph', '|=_', '|#', '/='],
+        b: ['I3', '8', '13', '|3', '!3', '(3'],
+        r: ['I2', '2', '12', '|9', '|`', '/2'],
+        y: ['j', "'/'", '7', '\\|/', '\\//'],
+        u: ['(_)', '|_|', 'V', 'L|']
+    },
+    expert: {
+        a: ['4', '@', '/\\', 'Д'],
+        c: ['[', '{', '&lt;', '©'],
+        d: [')', '|)', '(|', '[)', '|>', '>', '|]', '|}'],
+        e: ['3', '&amp;', 'ë', '£', '€', '[-', '|=-'],
+        g: ['&amp;', '6', '9', '(_+', '(?,', '[,', '{,', 'gee'],
+        h: ['#', '/-/', '[-]', ']-[', ')-(,', '(-)', ':-:', '1-1', '|+|'],
+        i: ['1', '[]', '|', '!', '][', '!'],
+        j: [', _|', '_|', '._|', '._]', '_]'],
+        k: ['>|', '|&lt;', '/&lt;', '1&lt;', '|(', '|{'],
+        l: ['1', '7', '|_', '|', '£'],
+        n: ['^/', '|\\|', '/\\/', '[\\]', '&lt;\\>', '{\\}', 'И', 'ท'],
+        o: ['(0)', '()', '[]', '&lt;>', 'oh', 'Ø'],
+        p: ['|*', '|º', '|^', '|>', '|7', '[]D'],
+        q: ['(_,)', '9', '()_', '2', '0_', '&lt;|', '&amp;'],
+        s: ['5', '$', '2', '§', 'ehs', 'es'],
+        t: ['7', '+', '-|-', "']['", '~|~', '†'],
+        v: ['\\/', '|/', '\\|'],
+        w: ['\\/\\/', 'VV', '\\N', "'//", "\\\\'", '\\^/', '\\|/', '\\_|_/', '\\_:_/', 'Ш', 'Щ', 'พ', 'v²'],
+        x: ['>&lt;', '}{', ')(', '][', '×', 'ecks'],
+        z: ['2', '7_', '-/_', '%'],
+        m: ['/\\/\\', '/V\\', '[V]', '[]V[]', '|\\/|', '^^', '&lt;\\/>', ']\\/[', 'nn', '|T|', 'JTI'],
+        f: ['ph', '|=_', '|#', '/=', 'v', 'ƒ'],
+        b: ['I3', '8', '13', '|3', '!3', '(3', 'j3'],
+        r: ['I2', '2', '12', '|9', '|`', '/2', '®', '[z', 'Я'],
+        y: ['j', "'/'", '7', '\\|/', '\\//', '¥', 'Ч'],
+        u: ['(_)', '|_|', 'V', 'L|', 'µ', 'บ']
+    }
+};
+
+/**
+ * Leet numbers mapping for encoding and decoding.
+ */
+// const leetNumbers = {
+//     numbers: {
+//         1: ["L", "I"], "2": ["R", "Z"], "3": ["E"],
+//         4: ["A"], "5": ["S"], "6": ["b", "G"],
+//         7: ["T", "L"], "8": ["B"],
+//         9: ["g", "q"], "0": ["o", "()"]
+//     }
+// };
+
+program.name('leet-speak-cli').description('CLI tool to encode and decode leet-speak').version('0.0.1');
+
+/**
+ * Encodes a string into leet-speak.
+ * @param {string} string - The input string to encode.
+ * @param {string} level - The complexity level of leet-speak ("basic", "intermediate", "advanced", or "expert").
+ * @returns {string} The encoded string.
+ */
+const encodeLeet = (string, level) => {
+    string = string.toLowerCase();
+    const leetMap = leetAlphabet[level];
+    let encodedString = '';
+    for (let char of string) {
+        const replacements = leetMap[char];
+        const replacement = replacements ? replacements[Math.floor(Math.random() * replacements.length)] : char;
+        encodedString += replacement;
+    }
+    return encodedString;
+};
+
+/**
+ * Decodes a leet-speak string into plain text.
+ * @param {string} string - The leet-speak string to decode.
+ * @param {string} level - The complexity level of leet-speak ("basic", "intermediate", "advanced", or "expert").
+ * @returns {string} The decoded string.
+ */
+const decodeLeet = (string, level) => {
+    const leetMap = leetAlphabet[level];
+    let decodedString = '';
+    let index = 0;
+    while (index &lt; string.length) {
+        let found = false;
+        for (let key in leetMap) {
+            if (leetMap.hasOwnProperty(key)) {
+                const replacements = leetMap[key];
+                for (let replacement of replacements) {
+                    if (string.substr(index, replacement.length) === replacement) {
+                        decodedString += key;
+                        index += replacement.length;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found) break;
+        }
+        if (!found) {
+            decodedString += string[index];
+            index++;
+        }
+    }
+    return decodedString;
+};
+
+program
+    .option('-l, --level &lt;level>', 'leet-speak complexity level ("basic", "intermediate", "advanced", or "expert")')
+    .option('-e, --encode', 'encode the input string')
+    .option('-d, --decode', 'decode the input string')
+    .option('-s, --string &lt;string>', 'input string to encode or decode');
+
+const helpInfo = `
+Examples:
+  npm start -- -l basic -e -s "hello"
+  npm start -- -l basic -d -s "h3ll0"
+`;
+
+program.on('--help', () => {
+    console.log(helpInfo);
+});
+
+program.parse(process.argv);
+
+const { level, encode, decode, string } = program.opts();
+
+if (!level || (!encode &amp;&amp; !decode) || !string) {
+    console.error('invalid command. provide correct the arguments.');
+    console.log(helpInfo);
+} else {
+    if ((encode &amp;&amp; decode) || (!encode &amp;&amp; !decode)) {
+        console.error('invalid command. Please provide either -e, --encode or -d, --decode.');
+        console.log(helpInfo);
+    } else {
+        if (!['basic', 'intermediate', 'advanced', 'expert'].includes(level.toLowerCase())) {
+            console.error('invalid level. provide ("basic", "intermediate", "advanced", or "expert")');
+            console.log(helpInfo);
+        } else {
+            if (encode) {
+                const encodedString = encodeLeet(string, level);
+                console.log('string:  ', string);
+                console.log('encoded: ', encodedString);
+            }
+            if (decode) {
+                const decodedString = decodeLeet(string, level);
+                console.log('string:  ', string);
+                console.log('decoded: ', decodedString);
+            }
+        }
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#decodeLeet">decodeLeet</a></li><li><a href="global.html#encodeLeet">encodeLeet</a></li><li><a href="global.html#leetAlphabet">leetAlphabet</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Feb 21 2024 09:47:10 GMT+0000 (Western European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
