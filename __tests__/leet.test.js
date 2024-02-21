@@ -1,6 +1,12 @@
 const { encodeLeet, decodeLeet } = require('../index');
 
+/**
+ * Test suite for the encodeLeet function.
+ */
 describe('encodeLeet', () => {
+    /**
+     * Test case to encode basic Leet.
+     */
     test('encode basic Leet', () => {
         const input = 'hello world';
         const level = 'basic';
@@ -8,6 +14,9 @@ describe('encodeLeet', () => {
         expect(encoded).toEqual('h3ll0 w0rld');
     });
 
+    /**
+     * Test case to encode intermediate Leet.
+     */
     test('encode intermediate Leet', () => {
         const input = 'hello world';
         const level = 'intermediate';
@@ -15,6 +24,9 @@ describe('encodeLeet', () => {
         expect(encoded).toEqual('#3110 \\/\\/0I21|)');
     });
 
+    /**
+     * Test case to encode advanced Leet.
+     */
     test('encode advanced Leet', () => {
         const input = 'hello world';
         const level = 'advanced';
@@ -24,6 +36,9 @@ describe('encodeLeet', () => {
         expect(typeof encoded).toEqual('string');
     });
 
+    /**
+     * Test case to encode expert Leet.
+     */
     test('encode expert Leet', () => {
         const input = 'hello world';
         const level = 'expert';
@@ -34,7 +49,13 @@ describe('encodeLeet', () => {
     });
 });
 
+/**
+ * Test suite for the decodeLeet function.
+ */
 describe('decodeLeet', () => {
+    /**
+     * Test case to decode basic Leet.
+     */
     test('decode basic Leet', () => {
         const input = 'h3ll0 w0rld';
         const level = 'basic';
@@ -42,6 +63,9 @@ describe('decodeLeet', () => {
         expect(decoded).toEqual('hello world');
     });
 
+    /**
+     * Test case to decode intermediate Leet.
+     */
     test('decode intermediate Leet', () => {
         const input = '#3110 \\/\\/0I21|)';
         const level = 'intermediate';
@@ -49,6 +73,9 @@ describe('decodeLeet', () => {
         expect(decoded).toEqual('hello world');
     });
 
+    /**
+     * Test case to decode advanced Leet.
+     */
     test('decode advanced Leet', () => {
         const input = '(-)ë|_|_<> \\N<>2|_[)';
         const level = 'advanced';
@@ -56,6 +83,9 @@ describe('decodeLeet', () => {
         expect(decoded).toEqual('hello world');
     });
 
+    /**
+     * Test case to decode expert Leet.
+     */
     test('decode expert Leet', () => {
         const input = '(-)£77Ø v²Ø27)';
         const level = 'expert';

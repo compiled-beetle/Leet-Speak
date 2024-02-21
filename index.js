@@ -2,6 +2,9 @@
 
 const { program } = require('commander');
 
+/**
+ * Leet alphabet mapping for encoding and decoding.
+ */
 const leetAlphabet = {
     basic: {
         a: ['4'],
@@ -96,6 +99,9 @@ const leetAlphabet = {
     }
 };
 
+/**
+ * Leet numbers mapping for encoding and decoding.
+ */
 // const leetNumbers = {
 //     numbers: {
 //         1: ["L", "I"], "2": ["R", "Z"], "3": ["E"],
@@ -107,6 +113,12 @@ const leetAlphabet = {
 
 program.name('leet-speak-cli').description('CLI tool to encode and decode leet-speak').version('0.0.1');
 
+/**
+ * Encodes a string into leet-speak.
+ * @param {string} string - The input string to encode.
+ * @param {string} level - The complexity level of leet-speak ("basic", "intermediate", "advanced", or "expert").
+ * @returns {string} The encoded string.
+ */
 const encodeLeet = (string, level) => {
     string = string.toLowerCase();
     const leetMap = leetAlphabet[level];
@@ -119,6 +131,12 @@ const encodeLeet = (string, level) => {
     return encodedString;
 };
 
+/**
+ * Decodes a leet-speak string into plain text.
+ * @param {string} string - The leet-speak string to decode.
+ * @param {string} level - The complexity level of leet-speak ("basic", "intermediate", "advanced", or "expert").
+ * @returns {string} The decoded string.
+ */
 const decodeLeet = (string, level) => {
     const leetMap = leetAlphabet[level];
     let decodedString = '';
