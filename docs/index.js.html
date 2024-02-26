@@ -139,12 +139,12 @@ const leetAlphabet = {
 //     }
 // };
 
-program.name('leet-speak-cli').description('CLI tool to encode and decode leet-speak').version('0.0.1');
+program.name('Leet-Speak-CLI').description('CLI tool to encode and decode Leet-Speak').version('0.0.1');
 
 /**
- * Encodes a string into leet-speak.
+ * Encodes a string into Leet-Speak.
  * @param {string} string - The input string to encode.
- * @param {string} level - The complexity level of leet-speak ("basic", "intermediate", "advanced", or "expert").
+ * @param {string} level - The complexity level of Leet-Speak ("basic", "intermediate", "advanced", or "expert").
  * @returns {string} The encoded string.
  */
 const encodeLeet = (string, level) => {
@@ -160,9 +160,9 @@ const encodeLeet = (string, level) => {
 };
 
 /**
- * Decodes a leet-speak string into plain text.
- * @param {string} string - The leet-speak string to decode.
- * @param {string} level - The complexity level of leet-speak ("basic", "intermediate", "advanced", or "expert").
+ * Decodes a Leet-Speak string into plain text.
+ * @param {string} string - The Leet-Speak string to decode.
+ * @param {string} level - The complexity level of Leet-Speak ("basic", "intermediate", "advanced", or "expert").
  * @returns {string} The decoded string.
  */
 const decodeLeet = (string, level) => {
@@ -194,7 +194,7 @@ const decodeLeet = (string, level) => {
 };
 
 program
-    .option('-l, --level &lt;level>', 'leet-speak complexity level ("basic", "intermediate", "advanced", or "expert")')
+    .option('-l, --level &lt;level>', 'Leet-Speak complexity level ("basic", "intermediate", "advanced", or "expert")')
     .option('-e, --encode', 'encode the input string')
     .option('-d, --decode', 'decode the input string')
     .option('-s, --string &lt;string>', 'input string to encode or decode');

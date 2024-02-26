@@ -1,25 +1,25 @@
-# leet-speak Encoder/Decoder
+# Leet-Speak Encoder/Decoder
 
-This is a simple Node.js application for encoding and decoding strings into leet-speak.
+This is a simple Node.js application for encoding and decoding strings into Leet-Speak.
 
-> NOTE: Decoding leet-speak is not a straightforward process, and the application is not be able to decode all strings
+> NOTE: Decoding Leet-Speak is not a straightforward process, and the application is not be able to decode all strings
 > accurately. Only basic level is decoded accurately.
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/compiled-beetle/leet-speak`
-2. Navigate to the project directory: `cd leet-speak`
+1. Clone the repository: `git clone https://github.com/compiled-beetle/Leet-Speak`
+2. Navigate to the project directory: `cd Leet-Speak`
 3. Install dependencies: `npm install`
 
 ## Usage
 
-To encode a string into leet-speak, run:
+To encode a string into Leet-Speak, run:
 
 ```
 npm start -- -l <level> -e -s "<input_string>"
 ```
 
-To decode a leet-speak string, run:
+To decode a Leet-Speak string, run:
 
 ```
 npm start -- -l <level> -d -s "<leet_string>"
@@ -43,7 +43,7 @@ npm start -- -l basic -d -s "h3ll0 w0r1d"
 
 ## Options
 
--   `-l, --level <level>`: leet-speak complexity level (`basic`, `intermediate`, `advanced`, or `expert`)
+-   `-l, --level <level>`: Leet-Speak complexity level (`basic`, `intermediate`, `advanced`, or `expert`)
 -   `-e, --encode`: Encode the input string
 -   `-d, --decode`: Decode the input string
 -   `-s, --string <string>`: Input string to encode or decode
